@@ -13,5 +13,16 @@ void main() {
 
     System.out.println(ven);
 
+    System.out.println();
+
+    System.out.println("=== Teste 2: Vendedor findByDepartamento ===");
+    Departamento dep = new Departamento(2,null);
+    List<Vendedor> lista = venDao.findByDepartamento(dep);
+
+    for(Vendedor obj : lista){
+        System.out.println(obj);
+    }
+
+
 
 }
