@@ -23,6 +23,14 @@ void main() {
         System.out.println(obj);
     }
 
+    System.out.println();
+
+    System.out.println("=== Teste 3: Vendedor findAll ===");
+    List<Vendedor> lista2 = venDao.findAll();
+
+    for(Vendedor obj : lista2){
+        System.out.println(obj);
+    }
 
 
 }

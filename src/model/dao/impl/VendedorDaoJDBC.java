@@ -6,10 +6,7 @@ import model.dao.VendedorDao;
 import model.entities.Departamento;
 import model.entities.Vendedor;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -115,7 +112,40 @@ public class VendedorDaoJDBC implements VendedorDao {
 
     @Override
     public List<Vendedor> findAll() {
-        return List.of();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        try{
+            ps = conn.prepareStatement(
+                    "SELECT vendedor.*, departamento.nome as DepNome "
+                    + "FROM vendedor INNER JOIN departamento "
+                    + "ON vendedor.departamentoId = departamento.id "
+                    + "ORDER BY  nome"
+            );
+
+            rs = ps.executeQuery();
+            List<Vendedor> lista = new ArrayList<>();
+            Map<Integer, Departamento> map = new HashMap<>();
+
+            while(rs.next()){
+
+                Departamento obj = map.get(rs.getInt("departamentoId"));
+
+                if(obj == null){
+                    obj = instantiateDepartamento(rs);
+                    map.put(rs.getInt("departamentoId"), obj);
+                }
+
+                Vendedor ven = instantiateVendedor(rs, obj);
+                lista.add(ven);
+            }
+            return lista;
+    }catch (SQLException e){
+            throw new DbException(e.getMessage());
+        }finally {
+            DB.closeStatement(ps);
+            DB.closeResult(rs);
+        }
     }
 
     private Departamento instantiateDepartamento(ResultSet rs) throws SQLException {
