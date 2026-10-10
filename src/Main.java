@@ -8,6 +8,7 @@ import model.entities.Vendedor;
 void main() {
 
     VendedorDao venDao = DaoFactory.createVendedorDao();
+    System.out.println("=== Teste 1: Vendedor findById ===");
     Vendedor ven = venDao.findById(3);
 
     System.out.println(ven);
