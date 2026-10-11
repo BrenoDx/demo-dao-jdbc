@@ -39,5 +39,12 @@ void main() {
     venDao.insert(ven2);
     System.out.println("Inserido! Novo ID -> " + ven2.getId());
 
+    System.out.println();
 
+    System.out.println("=== Teste 5: Vendedor Update");
+    ven = venDao.findById(1);
+    ven.setNome("Martha Wayne");
+    venDao.update(ven);
+
+    System.out.println("Update completed");
 }
