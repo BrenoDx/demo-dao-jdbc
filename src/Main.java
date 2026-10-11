@@ -7,6 +7,8 @@ import model.entities.Vendedor;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 void main() {
 
+    Scanner sc = new Scanner(System.in);
+
     VendedorDao venDao = DaoFactory.createVendedorDao();
     System.out.println("=== Teste 1: Vendedor findById ===");
     Vendedor ven = venDao.findById(3);
@@ -47,4 +49,14 @@ void main() {
     venDao.update(ven);
 
     System.out.println("Update completed");
+
+    System.out.println();
+
+    System.out.println("=== Teste 6: Vendedor Delete ===");
+    System.out.print("Informe Id para deletar: ");
+    int id = sc.nextInt();
+
+    venDao.deleteById(id);
+    System.out.println("Delete completed");
+    sc.close();
 }
