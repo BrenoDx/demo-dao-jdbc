@@ -5,10 +5,7 @@ import DB.DbException;
 import model.dao.DepartamentoDao;
 import model.entities.Departamento;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +19,30 @@ public class DepartamentoDaoJDBC implements DepartamentoDao {
 
     @Override
     public void insert(Departamento obj) {
+        PreparedStatement ps = null;
+
+        try{
+            ps = conn.prepareStatement(
+                    "INSERT INTO departamento (nome)" +
+                            "VALUES (?)", Statement.RETURN_GENERATED_KEYS
+            );
+
+            ps.setString(1, obj.getNome());
+            int rowsAffected = ps.executeUpdate();
+
+            if(rowsAffected > 0){
+                ResultSet rs = ps.getGeneratedKeys();
+                if(rs.next()){
+                    obj.setId(rs.getInt(1));
+                }
+                DB.closeResult(rs);
+            }else{
+                throw new DbException("Erro! nenhuma linha inserida");
+            }
+
+        }catch(SQLException e){
+            throw new DbException(e.getMessage());
+        }
 
     }
 

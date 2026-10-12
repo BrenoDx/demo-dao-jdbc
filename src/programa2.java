@@ -24,8 +24,16 @@ public class programa2 {
 
         System.out.println();
 
+        System.out.println("=== Teste 3: Departamento Inserir");
+        Departamento dep2 = new Departamento(null, "DepTest");
+        depDao.insert(dep2);
+
+        System.out.println(dep2);
+
+        System.out.println();
+
         System.out.println("=== Teste 4: Departamento Delete ===");
-        depDao.deleteById(5);
+        depDao.deleteById(dep2.getId());
         System.out.println("Delete completed!");
     }
 }
