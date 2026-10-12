@@ -21,5 +21,11 @@ public class programa2 {
         for(Departamento obj : lista){
             System.out.println(obj);
         }
+
+        System.out.println();
+
+        System.out.println("=== Teste 4: Departamento Delete ===");
+        depDao.deleteById(5);
+        System.out.println("Delete completed!");
     }
 }
