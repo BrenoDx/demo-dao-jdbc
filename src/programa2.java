@@ -35,5 +35,12 @@ public class programa2 {
         System.out.println("=== Teste 4: Departamento Delete ===");
         depDao.deleteById(dep2.getId());
         System.out.println("Delete completed!");
+
+        System.out.println();
+
+        System.out.println("=== Teste 5: Departamento Update ===");
+        dep.setNome("teste2");
+        depDao.update(dep);
+        System.out.println("Update completed");
     }
 }
