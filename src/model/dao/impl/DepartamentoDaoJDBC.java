@@ -42,6 +42,8 @@ public class DepartamentoDaoJDBC implements DepartamentoDao {
 
         }catch(SQLException e){
             throw new DbException(e.getMessage());
+        }finally {
+            DB.closeStatement(ps);
         }
 
     }
@@ -81,6 +83,8 @@ public class DepartamentoDaoJDBC implements DepartamentoDao {
 
         }catch(SQLException e){
             throw new DbException(e.getMessage());
+        }finally {
+            DB.closeStatement(ps);
         }
 
     }
@@ -135,6 +139,9 @@ public class DepartamentoDaoJDBC implements DepartamentoDao {
             return lista;
         }catch(SQLException e){
             throw new DbException(e.getMessage());
+        }finally {
+            DB.closeStatement(ps);
+            DB.closeResult(rs);
         }
     }
 }
