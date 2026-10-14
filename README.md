@@ -1,6 +1,6 @@
 # Demo DAO JDBC
 
-Projeto desenvolvido em Java para demonstrar o acesso a banco de dados relacional utilizando JDBC (Java Database Connectivity) e o padrão DAO (Data Access Object).
+Projeto desenvolvido em Java do curso Nélio Alves da Udemy para demonstrar o acesso a banco de dados relacional utilizando JDBC (Java Database Connectivity) e o padrão DAO (Data Access Object).
 
 ## Tecnologias utilizadas
 
